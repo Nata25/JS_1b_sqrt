@@ -1,23 +1,32 @@
-var number = 363924804;
+var number = 81;
 
 function sqrt_new(n) {
+
+    // break number to parts
     var strToNum = n.toString();
-    var sides = [];
+    var parts = [];
     var len = strToNum.length;
-    console.log(len);
     if (len % 2 != 0) {
         strToNum = " " + strToNum;
-        console.log(strToNum);
     }
     for (var i = 0; i < len; i += 2) {
-        sides.push(strToNum.substr(i, 2));
+        parts.push(strToNum.substr(i, 2));
     }
 
-    for (var i = 0; i < sides.length; i++) {
-        console.log("array", sides[i]);
-    }
+    // find first number of result
+    var iterations = parts.length;
 
-    return sides.length;
+    var current = 1;
+
+    for (var i = 0; i < iterations; i++) {
+        console.log(parts[0]);
+        while (current * current < parts[0]) {
+            current++;
+        }
+        console.log(current);
+   }
+
+    return current;
 }
 
 console.log(sqrt_new(number));
