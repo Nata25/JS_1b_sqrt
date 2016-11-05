@@ -1,6 +1,9 @@
-var number = 81;
+var number = 10201;
 
 function sqrt_new(n) {
+    var current, delta, max, test, guess;
+    var step = 1;
+    var current = 0;
 
     // break number to parts
     var strToNum = n.toString();
@@ -14,19 +17,34 @@ function sqrt_new(n) {
     }
 
     // find first number of result
-    var iterations = parts.length;
+    while ( (current + step) * (current + step) <= (parts[0]) )  {
+        current += step;
+    }
 
-    var current = 1;
+    // find the rest of numbers
+    max = parts[0];
+    test = current * current;
+
+    var iterations = parts.length - 1;
 
     for (var i = 0; i < iterations; i++) {
-        console.log(parts[0]);
-        while (current * current < parts[0]) {
-            current++;
+        // console.log(max, test);
+        delta = max - test;
+        // console.log(current, delta);
+        max = parseInt(delta + parts[i+1]);
+        console.log(max);
+
+        guess = 1;
+
+        while ( (current * 20 + guess) * (guess) <= max) {
+            guess++;
+            console.log(guess);
         }
-        console.log(current);
+
+        var result = current.toString() + (guess - 1).toString();
    }
 
-    return current;
+    return result;
 }
 
 console.log(sqrt_new(number));
