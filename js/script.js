@@ -1,7 +1,8 @@
-var number = 10201;
+var number = 253009;
+// var number = 625;
 
 function sqrt_new(n) {
-    var current, delta, max, test, guess;
+    var current, delta, max, test, guess, result;
     var step = 1;
     var current = 0;
 
@@ -17,9 +18,12 @@ function sqrt_new(n) {
     }
 
     // find first number of result
-    while ( (current + step) * (current + step) <= (parts[0]) )  {
+    while ( (current) * (current) <= (parts[0]) )  {
         current += step;
     }
+
+    current = current - step;
+    // console.log(result);
 
     // find the rest of numbers
     max = parts[0];
@@ -28,23 +32,28 @@ function sqrt_new(n) {
     var iterations = parts.length - 1;
 
     for (var i = 0; i < iterations; i++) {
-        // console.log(max, test);
+        console.log("iteration " + i + ", max = " + max, ", test = ", test);
         delta = max - test;
-        // console.log(current, delta);
         max = parseInt(delta + parts[i+1]);
-        console.log(max);
-
-        guess = 1;
-
-        while ( (current * 20 + guess) * (guess) <= max) {
+        console.log("max at the beginning of iteration:", max);
+        guess = 0;
+        do {
             guess++;
-            console.log(guess);
-        }
+            test = +((current * 2).toString() + guess) * guess;
+            console.log( "guess", guess, ", test", test);
+        } while  (test <= max);
 
-        var result = current.toString() + (guess - 1).toString();
+
+        guess -= step;
+        console.log("guess = ", guess);
+        console.log("current = ", current);
+        test = +((current * 2).toString() + guess) * guess;
+        current = +(current.toString() + guess.toString());
+        console.log("test after iteration", i, ": ", test);
+        console.log("max after iteration", i, ": ", max);
    }
 
-    return result;
+    return current;
 }
 
 console.log(sqrt_new(number));
