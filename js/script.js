@@ -1,14 +1,16 @@
 var number = 253009;
 // var number = 625;
+// var number = 138384;
 
 function sqrt_new(n) {
-    var current, delta, max, test, guess, result;
     var step = 1;
-    var current = 0;
+    var guess = 0;
+    var currentResult = guess;
+    var diff, max, test;
+    var parts = [];
 
     // break number to parts
     var strToNum = n.toString();
-    var parts = [];
     var len = strToNum.length;
     if (len % 2 != 0) {
         strToNum = " " + strToNum;
@@ -18,42 +20,35 @@ function sqrt_new(n) {
     }
 
     // find first number of result
-    while ( (current) * (current) <= (parts[0]) )  {
-        current += step;
+    max = parts[0];
+    do {
+        guess += step;
+        test = guess * guess;
     }
+    while (test <= max);
 
-    current = current - step;
-    // console.log(result);
+    guess -= step;
+    currentResult = guess;
+    test = guess * guess;
 
     // find the rest of numbers
-    max = parts[0];
-    test = current * current;
-
     var iterations = parts.length - 1;
 
     for (var i = 0; i < iterations; i++) {
-        console.log("iteration " + i + ", max = " + max, ", test = ", test);
-        delta = max - test;
-        max = parseInt(delta + parts[i+1]);
-        console.log("max at the beginning of iteration:", max);
+
+        diff = max - test;
+        max = parseInt(diff + parts[i+1]);
         guess = 0;
         do {
             guess++;
-            test = +((current * 2).toString() + guess) * guess;
-            console.log( "guess", guess, ", test", test);
+            test = +((currentResult * 2).toString() + guess) * guess;
         } while  (test <= max);
 
-
         guess -= step;
-        console.log("guess = ", guess);
-        console.log("current = ", current);
-        test = +((current * 2).toString() + guess) * guess;
-        current = +(current.toString() + guess.toString());
-        console.log("test after iteration", i, ": ", test);
-        console.log("max after iteration", i, ": ", max);
+        test = +((currentResult * 2).toString() + guess) * guess;
+        currentResult = +(currentResult.toString() + guess.toString());
    }
-
-    return current;
+    return currentResult;
 }
 
 console.log(sqrt_new(number));
