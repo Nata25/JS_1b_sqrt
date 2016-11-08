@@ -1,7 +1,7 @@
 // var number = 36;
 // var number = 625;
-// var number = 138384;
-var number = 2530.09;
+var number = 138384;
+// var number = 2530.09;
 // var number = 2530.11;
 // var number = 360;
 
@@ -29,7 +29,7 @@ function sqrt_new(n) {
         if (shift % 2 == 0) {
             n = n * Math.pow(10, shift);
             strToNum = n.toString();
-            shift = Math.pow(0.1, shift / 2);
+            shift = shift / 2;
         }
     }
 
@@ -69,7 +69,7 @@ function sqrt_new(n) {
         result = +(result.toString() + guess.toString());
    }
    if (shift > 0) {
-       result = result * shift;
+       result = result * Math.pow(0.1, shift);
    }
 
    // Check if sqrt was calculated successfully
@@ -92,17 +92,11 @@ function sqrt_new(n) {
            guess -= step;
            result = +(result.toString() + guess.toString());
        }
-       console.log(shift);
-    //    result = result * Math.pow(0.1, precision + shift);
+    //    console.log(shift);
+       result = result * Math.pow(0.1, precision + shift);
 
        return result;
    };
-
-   // start of iterations with 00
-
-
-   // end of iterations with 00
-
 
 }
 
