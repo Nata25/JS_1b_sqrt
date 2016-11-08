@@ -2,55 +2,16 @@
 // @param n number >=0
 // @return result number
 
-// Sample numbers for testing:
-// var number = 36;
-// var number = 625;
-
-// var number = 138384;
-// 372
-
-// var number = 100000.0001;
-// 316.2277661749518
-
-// var number = 2530.09;
-// 50.300000000000004
-
-// var number = 25.3011;
-// 5.030019880676417
-
-// var number = 360;
-// 18.973665961010276
-
-// var number = 31.4;
-// 5.60357029044876
-
-// var number = 0.3140;
-// 0.5603570290448759
-
-// var number = 3.14
-// 1.772004514666935
-
-// var number = 31.4
-// 56.0357029044876
-
-// var number = 0.01;
-// 0.1
-
-// var number = 0.1;
-// 0.31622776601683794
-
 function sqrt_new(n) {
     var step = 1;
-    var guess = 0;
-    var result = guess;
+    var result = guess = 0;
     var diff, max, prevTest, nextTest;
     var parts = [];
     var period;
     var shift = 0;
-    var precision = 15; // other values ok but 64-bit floats aren't managed
+    var precision = 15;
 
     var strToNum = n.toString();
-    // var len = strToNum.length;
 
     // check for period
     period = strToNum.toString().indexOf('.');
@@ -72,7 +33,6 @@ function sqrt_new(n) {
     for (var i = 0; i < len; i += 2) {
         parts.push(strToNum.substr(i, 2));
     }
-    console.log(parts);
 
     // find first number of result
     max = parts[0];
@@ -118,7 +78,6 @@ function sqrt_new(n) {
                guess++;
                nextTest = +((result * 2).toString() + guess) * guess;
            } while (nextTest <= max);
-
            guess -= step;
            result = +(result.toString() + guess.toString());
        }
@@ -127,5 +86,41 @@ function sqrt_new(n) {
        return result;
    };
 }
+
+// Sample numbers for testing:
+// var number = 36;
+// var number = 625;
+// var number = 138384;
+// 372
+
+// var number = 100000.0001;
+// 316.2277661749518
+
+// var number = 2530.09;
+// 50.300000000000004
+
+// var number = 25.3011;
+// 5.030019880676417
+
+// var number = 360;
+// 18.973665961010276
+
+// var number = 31.4;
+// 5.60357029044876
+
+// var number = 0.3140;
+// 0.5603570290448759
+
+// var number = 3.14
+// 1.772004514666935
+
+// var number = 31.4
+// 56.0357029044876
+
+// var number = 0.01;
+// 0.1
+
+var number = 0.1;
+// 0.31622776601683794
 
 console.log(sqrt_new(number));
