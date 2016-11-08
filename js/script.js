@@ -1,13 +1,17 @@
-// var number = 36;
-// var number = 625;
-var number = 138384;
-// var number = 2530.09;
-// var number = 2530.11;
-// var number = 360;
-
 // Calculate square root of n
 // @param n number >=0
 // @return result number
+
+// Sample numbers for testing:
+// var number = 36;
+// var number = 625;
+// var number = 138384;
+// var number = 100000.0001;
+// var number = 2530.09;
+// var number = 25.3011;
+// var number = 360;
+// var number = 3.14;
+var number = 0.01;
 
 function sqrt_new(n) {
     var step = 1;
@@ -17,19 +21,22 @@ function sqrt_new(n) {
     var parts = [];
     var period;
     var shift = 0;
-    var precision = 3;
+    var precision = 15; // other values ok but 64-bit floats aren't managed
 
     var strToNum = n.toString();
     var len = strToNum.length;
 
-    // find period
+    // check for period
     period = strToNum.toString().indexOf('.');
     if (period != -1) {
+        console.log("true");
         shift = len - 1 - period;
         if (shift % 2 == 0) {
             n = n * Math.pow(10, shift);
             strToNum = n.toString();
+            console.log(strToNum);
             shift = shift / 2;
+            len--;
         }
     }
 
@@ -68,9 +75,6 @@ function sqrt_new(n) {
         guess -= step;
         result = +(result.toString() + guess.toString());
    }
-   if (shift > 0) {
-       result = result * Math.pow(0.1, shift);
-   }
 
    // Check if sqrt was calculated successfully
    if (prevTest == max) {
@@ -92,12 +96,10 @@ function sqrt_new(n) {
            guess -= step;
            result = +(result.toString() + guess.toString());
        }
-    //    console.log(shift);
        result = result * Math.pow(0.1, precision + shift);
 
        return result;
    };
-
 }
 
 console.log(sqrt_new(number));
