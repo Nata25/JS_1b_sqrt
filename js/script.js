@@ -5,14 +5,17 @@
 // Sample numbers for testing:
 // var number = 36;
 // var number = 625;
+
 // var number = 138384;
+// 372
+
 // var number = 100000.0001;
 // 316.2277661749518
 
 // var number = 2530.09;
 // 50.300000000000004
 
-var number = 25.3011;
+// var number = 25.3011;
 // 5.030019880676417
 
 // var number = 360;
@@ -47,27 +50,29 @@ function sqrt_new(n) {
     var precision = 15; // other values ok but 64-bit floats aren't managed
 
     var strToNum = n.toString();
-    var len = strToNum.length;
+    // var len = strToNum.length;
 
     // check for period
     period = strToNum.toString().indexOf('.');
     if (period != -1) {
-        len--;
-        shift = len - period;
+        // len--;
+        shift = strToNum.length - period;
         shift += shift % 2;
         n = n * Math.pow(10, shift);
         strToNum = n.toString();
         shift = shift / 2;
     }
 
+    var len = strToNum.length;
     // break number to parts
-    if (strToNum.length % 2 != 0) {
+    if (len % 2 != 0) {
         strToNum = " " + strToNum;
     }
 
-    for (var i = 0; i < strToNum.length; i += 2) {
+    for (var i = 0; i < len; i += 2) {
         parts.push(strToNum.substr(i, 2));
     }
+    console.log(parts);
 
     // find first number of result
     max = parts[0];
