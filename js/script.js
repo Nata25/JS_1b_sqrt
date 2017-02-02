@@ -120,7 +120,8 @@ function sqrt_new(n) {
 // var number = 0.01;
 // 0.1
 
-var number = 0.1;
+// var number = 0.1;
 // 0.31622776601683794
 
+var number = prompt("Enter a number: ");
 console.log(sqrt_new(number));
